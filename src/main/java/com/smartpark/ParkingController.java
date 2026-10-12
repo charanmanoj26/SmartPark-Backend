@@ -22,7 +22,9 @@ public class ParkingController {
     }
 
     @PostMapping("/api/parking/{slot}/reserve")
-    public Parking reserveSlot(@PathVariable String slot) {
+    public Parking reserveSlot(
+        @PathVariable String slot,
+        @RequestParam String vehicleNumber) {
         Parking parking = parkingRepository.findBySlot(slot)
             .orElseThrow(() -> new RuntimeException("Parking slot not found"));
 
@@ -31,6 +33,7 @@ public class ParkingController {
         }
 
         parking.setStatus("Reserved");
+        parking.setVehicleNumber(vehicleNumber);
         return parkingRepository.save(parking);
     }
 }

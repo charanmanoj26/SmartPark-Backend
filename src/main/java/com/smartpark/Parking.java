@@ -14,14 +14,23 @@ public class Parking {
 
     private String slot;
     private String status;
+    private String vehicleNumber;
 
     public Parking() {
     }
 
     public Parking(String slot, String status) {
-        this.slot = slot;
-        this.status = status;
-    }
+    this.slot = slot;
+    this.status = status;
+}
+
+public String getVehicleNumber() {
+    return vehicleNumber;
+}
+
+public void setVehicleNumber(String vehicleNumber) {
+    this.vehicleNumber = vehicleNumber;
+}
 
     public Long getId() {
         return id;

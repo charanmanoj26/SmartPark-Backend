@@ -29,17 +29,17 @@ public class ParkingController {
     public List<Booking> getBookings() {
         return bookingRepository.findByStatus("Active");
     }
-
     @PostMapping("/api/parking/{slot}/reserve")
     public Parking reserveSlot(
-        @PathVariable String slot,
-        @RequestParam String vehicleNumber) {
-        Parking parking = parkingRepository.findBySlot(slot)
-            .orElseThrow(() -> new RuntimeException("Parking slot not found"));
+        @PathVariable("slot") String slot,
+        @RequestParam("vehicleNumber") String vehicleNumber) {
 
-        if (!parking.getStatus().equals("Available")) {
-            throw new RuntimeException("Parking slot is not available");
-        }
+    Parking parking = parkingRepository.findBySlot(slot)
+        .orElseThrow(() -> new RuntimeException("Parking slot not found"));
+
+    if (!parking.getStatus().equals("Available")) {
+        throw new RuntimeException("Parking slot is not available");
+    }
 
         parking.setStatus("Reserved");
         parking.setVehicleNumber(vehicleNumber);

@@ -14,13 +14,40 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if (parkingRepository.count() == 0) {
-            parkingRepository.save(new Parking("A1", "Available"));
-            parkingRepository.save(new Parking("A2", "Occupied"));
-            parkingRepository.save(new Parking("A3", "Available"));
-            parkingRepository.save(new Parking("A4", "Reserved"));
-            parkingRepository.save(new Parking("B1", "Occupied"));
-            parkingRepository.save(new Parking("B2", "Available"));
-        }
+        parkingRepository.findBySlot("A1")
+    .ifPresent(p -> {
+        p.setStatus("Available");
+        parkingRepository.save(p);
+    });
+
+parkingRepository.findBySlot("A2")
+    .ifPresent(p -> {
+        p.setStatus("Occupied");
+        parkingRepository.save(p);
+    });
+
+parkingRepository.findBySlot("A3")
+    .ifPresent(p -> {
+        p.setStatus("Available");
+        parkingRepository.save(p);
+    });
+
+parkingRepository.findBySlot("A4")
+    .ifPresent(p -> {
+        p.setStatus("Reserved");
+        parkingRepository.save(p);
+    });
+
+parkingRepository.findBySlot("B1")
+    .ifPresent(p -> {
+        p.setStatus("Occupied");
+        parkingRepository.save(p);
+    });
+
+parkingRepository.findBySlot("B2")
+    .ifPresent(p -> {
+        p.setStatus("Available");
+        parkingRepository.save(p);
+    });
     }
 }

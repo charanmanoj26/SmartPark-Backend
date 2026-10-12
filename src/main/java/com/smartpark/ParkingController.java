@@ -30,7 +30,7 @@ public class ParkingController {
             throw new RuntimeException("Parking slot is not available");
         }
 
-        parking.setStatus("Occupied");
+        parking.setStatus("Reserved");
         return parkingRepository.save(parking);
     }
 }

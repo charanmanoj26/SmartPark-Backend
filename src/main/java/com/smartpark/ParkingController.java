@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+"https://smartpark-frontend-rq0t.onrender.com"
+})
 public class ParkingController {
 
     @GetMapping("/api/parking")
